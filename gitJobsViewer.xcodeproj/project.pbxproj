@@ -13,6 +13,10 @@
 		4BE1D0541B44A03E00C5AEFE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BE1D0531B44A03E00C5AEFE /* Images.xcassets */; };
 		4BE1D0571B44A03E00C5AEFE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BE1D0551B44A03E00C5AEFE /* LaunchScreen.xib */; };
 		4BE1D0631B44A03E00C5AEFE /* gitJobsViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1D0621B44A03E00C5AEFE /* gitJobsViewerTests.swift */; };
+		4BE1D06D1B44A0F000C5AEFE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1D06C1B44A0EF00C5AEFE /* SearchViewController.swift */; };
+		4BE1D0711B44A40900C5AEFE /* GitRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1D0701B44A40900C5AEFE /* GitRequestManager.swift */; };
+		4BE1D0761B4AC6E700C5AEFE /* JobPosting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1D0751B4AC6E700C5AEFE /* JobPosting.swift */; };
+		4BE1D0781B4AC75E00C5AEFE /* JobSearchSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1D0771B4AC75E00C5AEFE /* JobSearchSession.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +40,10 @@
 		4BE1D05C1B44A03E00C5AEFE /* gitJobsViewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = gitJobsViewerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BE1D0611B44A03E00C5AEFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BE1D0621B44A03E00C5AEFE /* gitJobsViewerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gitJobsViewerTests.swift; sourceTree = "<group>"; };
+		4BE1D06C1B44A0EF00C5AEFE /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		4BE1D0701B44A40900C5AEFE /* GitRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitRequestManager.swift; sourceTree = "<group>"; };
+		4BE1D0751B4AC6E700C5AEFE /* JobPosting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobPosting.swift; sourceTree = "<group>"; };
+		4BE1D0771B4AC75E00C5AEFE /* JobSearchSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobSearchSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +87,10 @@
 			children = (
 				4BE1D04C1B44A03E00C5AEFE /* AppDelegate.swift */,
 				4BE1D04E1B44A03E00C5AEFE /* ViewController.swift */,
+				4BE1D0751B4AC6E700C5AEFE /* JobPosting.swift */,
+				4BE1D0771B4AC75E00C5AEFE /* JobSearchSession.swift */,
+				4BE1D06C1B44A0EF00C5AEFE /* SearchViewController.swift */,
+				4BE1D0701B44A40900C5AEFE /* GitRequestManager.swift */,
 				4BE1D0501B44A03E00C5AEFE /* Main.storyboard */,
 				4BE1D0531B44A03E00C5AEFE /* Images.xcassets */,
 				4BE1D0551B44A03E00C5AEFE /* LaunchScreen.xib */,
@@ -212,7 +224,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BE1D0781B4AC75E00C5AEFE /* JobSearchSession.swift in Sources */,
+				4BE1D06D1B44A0F000C5AEFE /* SearchViewController.swift in Sources */,
 				4BE1D04F1B44A03E00C5AEFE /* ViewController.swift in Sources */,
+				4BE1D0761B4AC6E700C5AEFE /* JobPosting.swift in Sources */,
+				4BE1D0711B44A40900C5AEFE /* GitRequestManager.swift in Sources */,
 				4BE1D04D1B44A03E00C5AEFE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
