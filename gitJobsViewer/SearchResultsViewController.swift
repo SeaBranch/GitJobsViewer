@@ -10,7 +10,7 @@ import UIKit
 
 class SearchResultsViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,JobSearchRecieverDelegate {
     
-    @IBOutlet var tableView:UITableView?
+    @IBOutlet weak var tableView:UITableView?
     
     @IBOutlet weak var newSearchBBI: UIBarButtonItem!
     
@@ -36,16 +36,17 @@ class SearchResultsViewController: UIViewController,UITableViewDataSource,UITabl
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return self.viewModel!.sectionsRequiredInTableView()
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return 1
+        return self.viewModel!.rowsRequiredBySection(section)
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        var jobCell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("JobCell") as! UITableViewCell
-        jobCell.textLabel?.text = "Title, Company"
-        jobCell.detailTextLabel?.text = "Location"
+        var jobCell:JobCell = tableView.dequeueReusableCellWithIdentifier("JobCell") as! JobCell
+        jobCell.titleLabel.text = self.viewModel!.textForPrimaryLabelAtIndex(indexPath)
+        jobCell.subtitleLabel.text = self.viewModel!.textForSecondaryLabelAtIndex(indexPath)
+        jobCell.detailLabel.text = self.viewModel!.textForDetailLabelAtIndex(indexPath)
         return jobCell
     }
     
@@ -64,6 +65,7 @@ class SearchResultsViewController: UIViewController,UITableViewDataSource,UITabl
                 self.viewModel!.appendData(self.searchSession!.jobPostings[idx])
             }
             NSLog("newResults")
+            self.tableView?.reloadData()
         }
     }
     func didFinishSearch(){

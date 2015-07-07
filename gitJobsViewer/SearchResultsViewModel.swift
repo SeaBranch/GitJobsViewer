@@ -36,14 +36,20 @@ class SearchResultsViewModel: NSObject {
     
     
     func textForPrimaryLabelAtIndex(index:NSIndexPath)->String{
-        var postingSection:Array<JobPosting> = self.jobPostings[index.section]
-        var job:JobPosting = postingSection[index.row]
-        return "\(job.title), \(job.company)"
+        var job:JobPosting = self.jobForIndex(index)
+        return job.title
     }
     func textForSecondaryLabelAtIndex(index:NSIndexPath)->String{
-        var postingSection:Array<JobPosting> = self.jobPostings[index.section]
-        var job:JobPosting = postingSection[index.row]
+        var job:JobPosting = self.jobForIndex(index)
+        return job.company
+    }
+    func textForDetailLabelAtIndex(index:NSIndexPath)->String{
+        var job:JobPosting = self.jobForIndex(index)
         return job.location
+    }
+    func jobForIndex(index:NSIndexPath)->JobPosting{
+        var postingSection:Array<JobPosting> = self.jobPostings[index.section]
+        return postingSection[index.row]
     }
     
 }

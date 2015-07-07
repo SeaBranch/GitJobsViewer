@@ -23,6 +23,7 @@
 		4BE1D0811B4B3B1800C5AEFE /* TestData.json in Resources */ = {isa = PBXBuildFile; fileRef = 4BE1D0801B4B3B1800C5AEFE /* TestData.json */; };
 		4BE1D0831B4B4FBF00C5AEFE /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1D0821B4B4FBF00C5AEFE /* SearchResultsViewController.swift */; };
 		4BE1D0851B4C002800C5AEFE /* SearchResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1D0841B4C002800C5AEFE /* SearchResultsViewModel.swift */; };
+		4BE1D0871B4C150900C5AEFE /* JobCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1D0861B4C150900C5AEFE /* JobCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		4BE1D0801B4B3B1800C5AEFE /* TestData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestData.json; sourceTree = "<group>"; };
 		4BE1D0821B4B4FBF00C5AEFE /* SearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		4BE1D0841B4C002800C5AEFE /* SearchResultsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsViewModel.swift; sourceTree = "<group>"; };
+		4BE1D0861B4C150900C5AEFE /* JobCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				4BE1D0771B4AC75E00C5AEFE /* JobSearchSession.swift */,
 				4BE1D06C1B44A0EF00C5AEFE /* SearchViewController.swift */,
 				4BE1D0821B4B4FBF00C5AEFE /* SearchResultsViewController.swift */,
+				4BE1D0861B4C150900C5AEFE /* JobCell.swift */,
 				4BE1D0841B4C002800C5AEFE /* SearchResultsViewModel.swift */,
 				4BE1D0701B44A40900C5AEFE /* GitRequestManager.swift */,
 				4BE1D0501B44A03E00C5AEFE /* Main.storyboard */,
@@ -238,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BE1D0781B4AC75E00C5AEFE /* JobSearchSession.swift in Sources */,
+				4BE1D0871B4C150900C5AEFE /* JobCell.swift in Sources */,
 				4BE1D06D1B44A0F000C5AEFE /* SearchViewController.swift in Sources */,
 				4BE1D04F1B44A03E00C5AEFE /* ViewController.swift in Sources */,
 				4BE1D0851B4C002800C5AEFE /* SearchResultsViewModel.swift in Sources */,
