@@ -8,28 +8,36 @@
 
 import UIKit
 
+
 class SearchViewController: UIViewController {
 
+    @IBOutlet weak var termsField: UITextField!
+    @IBOutlet weak var locationField: UITextField!
+    var requestManager:GitRequestManager?
+    
+    var currentSession:JobSearchSession?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.requestManager = GitRequestManager()
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func searchAction(sender: AnyObject) {
+        if let searchSession:JobSearchSession = self.requestManager!.newSearchSessionWithTerms(self.termsField.text, location: self.locationField.text){
+            self.currentSession = searchSession
+            self.beginSearch()
+        }
+    }
+    func beginSearch(){
+        self.performSegueWithIdentifier("ShowSearchResults", sender: self)
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var resultsVC = segue.destinationViewController as! SearchResultsViewController
+        resultsVC.searchSession = self.currentSession!
+        self.currentSession!.reciever = resultsVC
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

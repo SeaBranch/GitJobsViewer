@@ -8,17 +8,26 @@
 
 import UIKit
 
+protocol JobSearchRecieverDelegate{
+    func didRecieveResults()
+    func didFinishSearch()
+}
 class JobSearchSession: NSObject {
-    var jobPostings: Array<JobPosting>//container for 
+    var jobPostings: Array<Array<JobPosting>>//container for
     let requestString:String//a collected arangement from the base url and requested search terms
 
+    var reciever:JobSearchRecieverDelegate?
+    
     var pages = 0//incriments as postings are found in each next page
     let MAXPERPAGE = 50//Max number of postings per page
     
     //the GitRequestManager builds the body of the request string from the search fields and initializes a search session with the requested fields
     required init(requestString:String) {
+        assert(requestString != "", "confirm search request not empty")
         self.jobPostings = Array()
         self.requestString = requestString
+        super.init()
+        self.requestNextPage()
     }
     func requestForNextPage()->NSURLRequest{
         let url = NSURL(string: self.requestString+"&page=\(self.pages)")
@@ -52,20 +61,30 @@ class JobSearchSession: NSObject {
         
         if dataJsons.count > 0{//if we have entries for this page
             self.pages++
+            var postingSection = Array<JobPosting>()
             for dict:NSDictionary in dataJsons{
                 var posting = JobPosting(dict: dict)
-                self.jobPostings.append(posting)
+                postingSection.append(posting)
             }
+            if postingSection.count > 0{
+                self.jobPostings.append(postingSection)
+            }
+            self.reciever!.didRecieveResults()
+            
             if dataJsons.count >= self.MAXPERPAGE{//if the count matches the maximum results per page
                 //check for any further postings not on this page
                 self.requestNextPage()
-            }else{//no page should follow as this page is not full
                 
+            }else{//no page should follow as this page is not full
+                self.reciever?.didFinishSearch()
             }
+            
         }else if self.pages == 0{//no results found for this search
             //end animation of search and show no results dialog
+            self.reciever?.didFinishSearch()
         }else {//no further results since last page
             //end animation of search
+            self.reciever?.didFinishSearch()
         }
     }
 }

@@ -8,25 +8,22 @@
 
 import UIKit
 
-protocol SearchDisplayDelegate{
-    
-}
+
 class GitRequestManager: NSObject {
-    var display:SearchDisplayDelegate?
+    
     let baseURL = "https://jobs.github.com/positions.json?"
-    var request:NSMutableURLRequest?
+    var currentSearchSession:JobSearchSession?
     
-    override init() {
-        
-    }
-    
-    func newSearchSessionWithTerms(searchTerm:String?, location:String?){
-        let url: NSURL = NSURL(string: "\(baseURL)&\(searchTerm)")!
-        request = NSMutableURLRequest(URL:url)
-        var err: NSError?
-    }
-    
-    func dataRecievedFromRequest(){
-        var requestReturn = request?.allHTTPHeaderFields
+    func newSearchSessionWithTerms(searchTerm:String?, location:String?)->JobSearchSession?{
+        var terms = ""
+        if searchTerm != nil{
+            var parsedSearchTerms:String = searchTerm!.stringByReplacingOccurrencesOfString(" ", withString: "_", options: NSStringCompareOptions.LiteralSearch, range:nil)
+            terms += "&description=\(parsedSearchTerms)"
+        }
+        if location != nil{
+            var parsedLocation:String = location!.stringByReplacingOccurrencesOfString(" ", withString: "_", options: NSStringCompareOptions.LiteralSearch, range:nil)
+            terms += "&location=\(parsedLocation)"
+        }
+        return JobSearchSession(requestString:"\(baseURL)\(terms)")
     }
 }

@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        var requesturl :NSURL = NSURL(string: "http://jobs.github.com/positions.json?description=ios&page=0")!
+        var requesturl :NSURL = NSURL(string: "http://jobs.github.com/positions.json?description=ios+Developer&page=0")!
         var request: NSURLRequest = NSURLRequest(URL: requesturl)
        // NSLog("REQUEST ^{^\(request)^}^")
         let task = NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
@@ -24,7 +24,7 @@ class ViewController: UIViewController {
             var dataJson:Array<NSDictionary> = NSJSONSerialization.JSONObjectWithData(data,
                 options: NSJSONReadingOptions.MutableContainers,
                 error: nil) as! Array<NSDictionary>
-            
+            NSLog("page search done")
             for dict:NSDictionary in dataJson{
                 var company = dict["company"] as! String
                 var title = dict["title"] as! String
@@ -32,9 +32,9 @@ class ViewController: UIViewController {
                 var jobDescriptionData = (dict["description"] as! String)
                 var jobDescription = self.formatFromHTMLtoPlainText(jobDescriptionData) as String//self.removeStringsFromString(jobDescriptionData, stringsToRemove:["<p>","</p>","<em>","</em>","<ul>","</ul>","<li>","</li>"])
                 
-                NSLog("company:\(company),title:\(title),loc:\(location),\n description:\(jobDescription)")
+                //NSLog("company:\(company),title:\(title),loc:\(location),\n description:\(jobDescription)")
             }
-            //NSLog("request R:\(response),D:\(dataJson),E:\(error)")
+            //NSLog("\(dataJson)")
         }/*NSURLSession.sharedSession().dataTaskWithURL(requesturl) {(data, response, error) in
             var dataj = NSString(data: data, encoding: NSUTF8StringEncoding)
             var json = NSJSONSerialization.JSONObjectWithData(dataj!, options: NSJSONReadingOptions.allZeros, error: error)
