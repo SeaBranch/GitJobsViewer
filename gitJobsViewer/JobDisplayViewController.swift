@@ -8,28 +8,24 @@
 
 import UIKit
 
+protocol JobDisplayExitDelegate{
+    func exitJobView(jobVC:JobDisplayViewController)
+}
 class JobDisplayViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    @IBOutlet weak var jobDisplayField: UITextView!
+    var owner:JobDisplayExitDelegate?
+    var applyHereLink:NSURL?
+    @IBOutlet weak var checkoutButton: UIButton!
+   
+    @IBAction func checkoutAction(sender: AnyObject) {
+        NSLog("apply here:\(self.applyHereLink)")
 
-        // Do any additional setup after loading the view.
+        if self.applyHereLink != nil{
+            UIApplication.sharedApplication().openURL(self.applyHereLink!)
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func exitAction(sender: AnyObject) {
+        owner?.exitJobView(self)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

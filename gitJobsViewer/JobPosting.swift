@@ -13,6 +13,7 @@ class JobPosting: NSObject {
     let company:String//e.g. Atomic Robot, LLC
     let location:String//e.g. Mason, OH.
     let jobDescription:String//a job description with links for applications and other job details
+    let jobDetails:NSURL?//place to find more information and to apply
     
     //created by the search session using the raw json dictionary data from the api response
     required init(dict:NSDictionary) {
@@ -21,6 +22,9 @@ class JobPosting: NSObject {
         self.location = dict["location"] as! String
         var jobDescriptionData = dict["description"] as! NSString
         self.jobDescription = JobPosting.formatFromHTMLtoPlainText(jobDescriptionData)//cleanup the text from special characters and html tags
+        var jobDetailString = dict["url"] as! NSString
+        self.jobDetails = NSURL(string: (jobDetailString as String))
+        NSLog("\(self.jobDetails)")
     }
     
     //helper function for description cleanup

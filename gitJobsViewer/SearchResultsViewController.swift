@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchResultsViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,JobSearchRecieverDelegate {
+class SearchResultsViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,JobSearchRecieverDelegate,JobDisplayExitDelegate {
     
     @IBOutlet weak var tableView:UITableView?
     
@@ -32,7 +32,17 @@ class SearchResultsViewController: UIViewController,UITableViewDataSource,UITabl
         return UIView()
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        
+        var sb = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        var jobVC:JobDisplayViewController = sb.instantiateViewControllerWithIdentifier("JobDisplayViewController") as! JobDisplayViewController
+        self.presentViewController(jobVC, animated: true) { () -> Void in
+            jobVC.jobDisplayField.text = self.viewModel?.displayTextForIndex(indexPath)
+            jobVC.applyHereLink = self.viewModel!.infoLocationForIndex(indexPath)
+            jobVC.checkoutButton.enabled = jobVC.applyHereLink != nil
+            jobVC.owner = self
+        }
+    }
+    func exitJobView(jobVC:JobDisplayViewController) {
+        jobVC.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

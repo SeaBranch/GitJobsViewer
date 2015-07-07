@@ -47,6 +47,14 @@ class SearchResultsViewModel: NSObject {
         var job:JobPosting = self.jobForIndex(index)
         return job.location
     }
+    func displayTextForIndex(index:NSIndexPath)->String{
+        var job:JobPosting = self.jobForIndex(index)
+        return "\(job.title)\n\(job.company), (\(job.location))\n\nJob Description:\n\n\(job.jobDescription)"
+    }
+    func infoLocationForIndex(index:NSIndexPath)->NSURL?{
+        var job:JobPosting = self.jobForIndex(index)
+        return job.jobDetails
+    }
     func jobForIndex(index:NSIndexPath)->JobPosting{
         var postingSection:Array<JobPosting> = self.jobPostings[index.section]
         return postingSection[index.row]

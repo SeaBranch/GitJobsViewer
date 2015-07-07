@@ -54,7 +54,7 @@ class JobSearchSession: NSObject {
     
     func handlePageRequestCompletion(data:NSData){
         var dataString:NSString = NSString(data: data, encoding: NSUTF8StringEncoding)!
-        
+        NSLog("\(dataString)")
         var dataJsons:Array<NSDictionary> = NSJSONSerialization.JSONObjectWithData(data,
             options: NSJSONReadingOptions.MutableContainers,
             error: nil) as! Array<NSDictionary>

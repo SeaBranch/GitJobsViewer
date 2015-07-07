@@ -9,7 +9,7 @@
 import UIKit
 
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController,UITextFieldDelegate {
 
     @IBOutlet weak var termsField: UITextField!
     @IBOutlet weak var locationField: UITextField!
@@ -21,6 +21,8 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         
         self.requestManager = GitRequestManager()
+        self.termsField.delegate = self
+        self.locationField.delegate = self
         // Do any additional setup after loading the view.
     }
 
@@ -38,6 +40,11 @@ class SearchViewController: UIViewController {
         resultsVC.searchSession = self.currentSession!
         self.currentSession!.reciever = resultsVC
     }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+
     
 
 }
